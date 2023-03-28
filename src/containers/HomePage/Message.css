@@ -1,0 +1,38 @@
+.message__card {
+    /* padding: 10px; */
+    box-sizing: border-box;
+   margin-left: 5%;
+   margin-right: 5%;
+   margin-bottom: 2%;
+   margin-top: 1%;
+height: 50px;
+    padding: auto;
+   
+    border-radius: 1.125rem 1.125rem 1.125rem 0 !important;
+    text-align: left;
+background: #2b3de7 !important;
+    color: rgb(251, 248, 252) !important;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.075), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
+	width: fit-content;
+}
+
+/* .message__guest__card{
+    background-color: #cf0f00 !important;
+} */
+
+.message__user__card {
+  
+    height: 9% !important;
+
+   /* margin-left: auto;
+   color: white;
+   text-align: left !important;
+   background-color: #5959be !important;
+   border-radius: 40px !important; */
+
+    /* padding: auto; */
+    margin: 1rem 1rem 1rem auto;
+    border-radius: 1.125rem 1.125rem 0 1.125rem !important;
+    background: #eb53d1 !important;
+    color: rgb(251, 248, 252) !important;
+}

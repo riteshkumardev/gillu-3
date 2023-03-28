@@ -1,0 +1,68 @@
+.loginContainer, .registerContainer{
+    width: 400px;
+    position: relative;
+    margin: 50px auto;
+}
+
+
+nav {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Form styles */
+form {
+    margin: 50px auto;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.form h1 {
+    text-align: center;
+}
+
+/* form label {
+    display: block;
+    margin-bottom: 10px;
+} */
+
+/* form input[type="email"], */
+/* form input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #333;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+} */
+
+form button[type="submit"] {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    form {
+        margin: 30px auto;
+    }
+}
