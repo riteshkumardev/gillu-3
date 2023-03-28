@@ -1,11 +1,11 @@
 .message__card {
-  padding: 0px;
+  padding: 0px !important;
   box-sizing: border-box;
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 2%;
   margin-top: 1%;
-  /* height: 40px; */
+  max-width: 92%;
 
   border-radius: 1.125rem 1.125rem 1.125rem 0 !important;
 
@@ -13,7 +13,7 @@
   color: rgb(251, 248, 252) !important;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.075),
     0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
-  width: fit-content;
+  width: fit-content !important;
 }
 
 /* .message__guest__card{

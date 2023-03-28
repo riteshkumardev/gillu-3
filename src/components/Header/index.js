@@ -28,7 +28,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Header() {
   const user = useSelector((state) => state?.auth);
-  console.log(user, "user");
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

@@ -59,6 +59,8 @@ const HomePage = (props) => {
   const [chatStarted, setChatStarted] = useState(false);
   const [chatUser, setchatUser] = useState("");
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState("");
+
   const [userUid, setUserUid] = useState(null);
   let unsubscribe;
 
@@ -99,12 +101,16 @@ const HomePage = (props) => {
 
     dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }));
   };
+  const newMsg = message + " ";
+  if (message.length % 20 === 0) {
+    setMessage(newMsg);
+  }
 
   const submitMessage = (e) => {
     const msgObj = {
       user_uid_1: auth.uid,
       user_uid_2: userUid,
-      message,
+      message: newMsg,
     };
 
     if (message !== "") {
