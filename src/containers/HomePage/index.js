@@ -158,8 +158,6 @@ const HomePage = (props) => {
                       </Typography>
                       <p
                         style={{
-                          border: "1px solid red",
-
                           padding: "auto",
                           margin: "auto",
                         }}
