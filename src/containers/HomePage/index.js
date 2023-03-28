@@ -150,7 +150,16 @@ const HomePage = (props) => {
                       >
                         {!con && `${con.username || "Anonymous"}`}
                       </Typography>
-                      <Typography>{con.message}</Typography>
+                      <p
+                        style={{
+                          border: "1px solid red",
+
+                          padding: "auto",
+                          margin: "auto",
+                        }}
+                      >
+                        {con.message}
+                      </p>
                     </CardContent>
                   </Card>
                 ))
