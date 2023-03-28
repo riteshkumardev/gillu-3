@@ -41,7 +41,7 @@ function RegisterPage() {
   return (
     <Layout>
       <div>
-        <Paper sx={{ marginLeft: "2%", marginRight: "2%" }}>
+        <Paper sx={{ marginLeft: "5%", marginRight: "5%" }}>
           <h1>Sign Up</h1>
 
           <Box sx={{ display: "flex", alignItems: "flex-end", margin: "30px" }}>

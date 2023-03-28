@@ -46,7 +46,7 @@ function LoginPage() {
 
   return (
     <Layout>
-      <Paper sx={{ marginLeft: "2%", marginRight: "2%" }}>
+      <Paper sx={{ marginLeft: "5%", marginRight: "5%" }}>
         <div>
           <main>
             <h1> Login</h1>

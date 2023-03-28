@@ -11,13 +11,10 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
     "@mui/styled-engine-sc": "^5.11.11",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "babel-loader": "^9.1.2",
     "firebase": "^9.18.0",
-    "html-webpack-plugin": "^5.5.0",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -28,9 +25,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "styled-components": "^5.3.9",
-    "web-vitals": "^2.1.4",
-    "webpack": "^5.76.3",
-    "webpack-dev-server": "^4.13.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

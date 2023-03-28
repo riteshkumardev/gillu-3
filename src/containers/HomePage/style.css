@@ -18,13 +18,13 @@
   position: relative;
 }
 .chatHeaderDiv {
-display: flex;
+  display: flex;
 }
 .chatHeader {
   position: fixed;
- 
+
   width: 70%;
-  height: 4.3%;
+  height: 6%;
   background: #e2e0e0;
   text-align: center;
   line-height: 40px;
@@ -99,8 +99,8 @@ display: flex;
   box-shadow: 0 0 10px 0 #16e316;
 }
 .onlineStatus.off {
-    padding: auto;
-    margin: auto;
+  padding: auto;
+  margin: auto;
   background: rgb(244, 7, 74);
   box-shadow: 0 0 0 0;
 }
