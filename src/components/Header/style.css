@@ -109,3 +109,25 @@
     margin-bottom: 10px;
   }
 }
+
+
+.topnav {
+  overflow: hidden;
+  background-color: white;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  width: 80%;
+  padding: 8px 8px;
+  text-decoration: none;
+  font-size: 15px;
+  /* border-bottom: 3px solid transparent; */
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid rgb(0, 119, 255);
+}

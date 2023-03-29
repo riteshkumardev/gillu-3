@@ -4,6 +4,7 @@ import { getRealtimeUsers } from "./user.actions";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import { Alert } from "@mui/material";
 
 const auth = firebase.auth;
 const firestore = firebase.firestore;
@@ -56,11 +57,20 @@ export const signup = (user) => {
                   type: `${authConstanst.USER_LOGIN}_FAILURE`,
                   payload: { error },
                 });
+                dispatch({
+                  type: `${authConstanst.USER_REGISTER_CATCH}_CATCH_FAILURE`,
+                  payload: true,
+                });
               });
           });
       })
       .catch((error) => {
-        console.log(error);
+        dispatch({
+          type: `${authConstanst.USER_REGISTER_CATCH}_CATCH_FAILURE`,
+          payload: true,
+        });
+
+        console.log(error, "gssg");
       });
   };
 };
@@ -71,8 +81,6 @@ export const signin = (user) => {
     auth()
       .signInWithEmailAndPassword(user.email, user.password)
       .then((data) => {
-        console.log(data);
-
         const db = firestore();
         db.collection("users")
           .doc(data.user.uid)
@@ -99,7 +107,11 @@ export const signin = (user) => {
             });
           })
           .catch((error) => {
-            console.log(error);
+            console.log(error, "error");
+            dispatch({
+              type: `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`,
+              payload: { error },
+            });
           });
       })
       .catch((error) => {
@@ -108,7 +120,19 @@ export const signin = (user) => {
           type: `${authConstanst.USER_LOGIN}_FAILURE`,
           payload: { error },
         });
+        dispatch({
+          type: `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`,
+          payload: { error },
+        });
       });
+  };
+};
+export const setAlertErtor = (user) => {
+  return async (dispatch) => {
+    dispatch({
+      type: `${authConstanst.USER_REGISTER_CATCH}_CATCH_FAILURE`,
+      payload: false,
+    });
   };
 };
 

@@ -12,12 +12,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import TouchAppIcon from "@mui/icons-material/TouchApp";
 
 import { NavLink, Link } from "react-router-dom";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../actions";
 import { Grid } from "@mui/material";
+
 /**
  * @author
  * @function Header
@@ -28,10 +30,10 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Header() {
   const user = useSelector((state) => state?.auth);
-
+  console.log(user, "user");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const authenticated = useSelector((state) => state?.auth?.authenticated);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -59,7 +61,9 @@ function Header() {
 
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography sx={{ margin: "auto", textAlign: "center" }}>
-            {user ? `Hi ${user.firstName} ${user.lastName}` : null}
+            {authenticated
+              ? `Hi ${user.firstName} ${user.lastName}`
+              : `Welcome To Gillu Chat  `}
           </Typography>
 
           <Typography
@@ -103,25 +107,30 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {!auth.authenticated ? (
-                <Grid Container>
-                  <Grid item={12}>
-                    <NavLink to={"/login"}>Login</NavLink>
+                <Grid Container sx={{ backgroundColor: "black" }}>
+                  <Grid item={12} className="topnav">
+                    <a href="/login" className="active">
+                      Login
+                    </a>
                   </Grid>
-                  <Grid item={12}>
-                    <NavLink to={"/signup"}>Sign up</NavLink>
+                  <Grid item={12} className="topnav">
+                    <a href="/signup" className="active">
+                      Sign up
+                    </a>
                   </Grid>
                 </Grid>
               ) : (
-                <Grid Container>
-                  <Grid item={12}>
-                    <Link
-                      to={"#"}
+                <Grid Container sx={{ backgroundColor: "black" }}>
+                  <Grid item={12} className="topnav">
+                    <a
+                      href="#"
+                      className="active"
                       onClick={() => {
                         dispatch(logout(auth.uid));
                       }}
                     >
                       Logout
-                    </Link>
+                    </a>
                   </Grid>
                 </Grid>
               )}

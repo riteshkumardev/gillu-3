@@ -1,6 +1,8 @@
 export const authConstanst = {
   USER_LOGIN: "USER_LOGIN",
   USER_LOGOUT: "USER_LOGOUT",
+  USER_CATCH_ERROR: "USER_CATCH_ERROR",
+  USER_REGISTER_CATCH: "USER_REGISTER_CATCH",
 };
 
 export const userConstants = {

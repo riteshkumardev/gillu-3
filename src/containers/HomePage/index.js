@@ -59,8 +59,6 @@ const HomePage = (props) => {
   const [chatStarted, setChatStarted] = useState(false);
   const [chatUser, setchatUser] = useState("");
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState("");
-
   const [userUid, setUserUid] = useState(null);
   let unsubscribe;
 
@@ -101,16 +99,12 @@ const HomePage = (props) => {
 
     dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }));
   };
-  const newMsg = message + " ";
-  if (message.length % 20 === 0) {
-    setMessage(newMsg);
-  }
 
   const submitMessage = (e) => {
     const msgObj = {
       user_uid_1: auth.uid,
       user_uid_2: userUid,
-      message: newMsg,
+      message,
     };
 
     if (message !== "") {
@@ -128,7 +122,10 @@ const HomePage = (props) => {
         <div className="listOfUsers">
           {user.users.length > 0
             ? user.users.map((user) => {
-                return <User onClick={initChat} key={user.uid} user={user} />;
+                const datats = user.uid !== auth.uid;
+                if (datats) {
+                  return <User onClick={initChat} key={user.uid} user={user} />;
+                }
               })
             : null}
         </div>
@@ -156,14 +153,9 @@ const HomePage = (props) => {
                       >
                         {!con && `${con.username || "Anonymous"}`}
                       </Typography>
-                      <p
-                        style={{
-                          padding: "auto",
-                          margin: "auto",
-                        }}
-                      >
+                      <Typography sx={{ paddingBottom: "15px" }}>
                         {con.message}
-                      </p>
+                      </Typography>
                     </CardContent>
                   </Card>
                 ))
