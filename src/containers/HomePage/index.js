@@ -22,6 +22,7 @@ import {
 
 const User = (props) => {
   const { user, onClick } = props;
+  console.log(user.isOnline, "isOnline");
 
   return (
     <div onClick={() => onClick(user)} className="displayName">
@@ -43,9 +44,7 @@ const User = (props) => {
           {user.firstName}
           {/* {user.lastName} */}
         </span>
-        <span
-          className={user.isOnline ? `isOnline` : `onlineStatus off`}
-        ></span>
+        <span className={user.isOnline ? `isOnline` : `offline`}></span>
       </div>
     </div>
   );

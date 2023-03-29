@@ -88,7 +88,7 @@
   top: 40px;
 }
 
-.onlineStatus {
+.isOnline {
   display: inline-block;
   width: 10px;
   padding: auto;
@@ -98,9 +98,13 @@
   border-radius: 5px;
   box-shadow: 0 0 10px 0 #16e316;
 }
-.onlineStatus.off {
+.offline {
+  display: inline-block;
+  width: 10px;
   padding: auto;
-  margin: auto;
+  height: 10px;
   background: rgb(244, 7, 74);
-  box-shadow: 0 0 0 0;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgb(244, 7, 74);
 }
