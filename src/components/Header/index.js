@@ -70,7 +70,7 @@ function Header() {
               ? `Hi ${user.firstName} ${user.lastName} `
               : `Welcome To Gillu Chat  `}
 
-            <div>&nbsp; &#x2194; &nbsp;{chatUser} </div>
+            <div> &#128073;&nbsp; &#x2194; &nbsp;&#128072;{chatUser} </div>
           </Typography>
 
           <Typography
