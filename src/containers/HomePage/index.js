@@ -174,6 +174,7 @@ const HomePage = (props) => {
                       height: "40px",
                       borderRadius: "40px",
                       margin: "auto",
+                      position: "fixed",
                       marginRight: "17px",
                     }}
                     onChange={(e) => setMessage(e.target.value)}
