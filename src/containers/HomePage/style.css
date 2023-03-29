@@ -12,7 +12,7 @@
   border-right: 1px solid #ccc;
 }
 .chatArea {
-  width: 70%;
+  width: 85%;
   height: 100%;
   overflow-x: hidden;
   position: relative;
@@ -23,7 +23,7 @@
 .chatHeader {
   position: fixed;
 
-  width: 70%;
+  width: 85%;
   height: 6%;
   background: #e2e0e0;
   text-align: center;
@@ -35,7 +35,7 @@
 .chatControls {
   display: flex;
   position: fixed;
-  width: 70%;
+  width: 85%;
   height: 50px;
   bottom: 0;
 }
