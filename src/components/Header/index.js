@@ -64,7 +64,12 @@ function Header() {
 
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
-            sx={{ margin: "auto", textAlign: "center", display: "flex" }}
+            sx={{
+              margin: "auto",
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
           >
             {authenticated
               ? `Hi ${user.firstName} ${user.lastName} `
