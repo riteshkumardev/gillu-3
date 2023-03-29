@@ -69,6 +69,7 @@ function Header() {
               textAlign: "center",
               display: "flex",
               justifyContent: "space-between",
+              marginLeft: "20px",
             }}
           >
             {authenticated

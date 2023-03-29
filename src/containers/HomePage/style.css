@@ -2,7 +2,7 @@
   display: flex;
   position: absolute;
   width: 100%;
-  height: calc(100%);
+  height: calc(80%);
   border: "1px solid red";
   overflow: hidden;
 }
