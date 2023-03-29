@@ -22,7 +22,6 @@ import {
 
 const User = (props) => {
   const { user, onClick } = props;
-  console.log(user.isOnline, "isOnline");
 
   return (
     <div onClick={() => onClick(user)} className="displayName">
@@ -44,7 +43,9 @@ const User = (props) => {
           {user.firstName}
           {/* {user.lastName} */}
         </span>
-        <span className={user.isOnline ? `isOnline` : `offline`}></span>
+        <span
+          className={user.isOnline ? `isOnline` : `onlineStatus off`}
+        ></span>
       </div>
     </div>
   );
@@ -94,7 +95,7 @@ const HomePage = (props) => {
 
     setUserUid(user.uid);
 
-    console.log(user);
+    // console.log(user);
 
     dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }));
   };
@@ -130,9 +131,9 @@ const HomePage = (props) => {
         </div>
 
         <div className="chatArea">
-          <div className="chatHeader">
+          {/* <div className="chatHeader">
             &#128525; {chatStarted ? chatUser : ""}&#128525;
-          </div>
+          </div> */}
           <div className="messageSections" ref={messageContainerRef}>
             {chatStarted
               ? user.conversations.map((con, i) => (
@@ -163,11 +164,8 @@ const HomePage = (props) => {
 
           <Box>
             {chatStarted ? (
-              <Box sx={{ mr: 1, flex: 1 }}>
-                <FormControl
-                  sx={{ m: 1, width: "100%", marginBottom: "0px" }}
-                  variant="outlined"
-                >
+              <Box sx={{ mr: 1, flex: 1, marginTop: "20%" }}>
+                <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
                   <OutlinedInput
                     value={message}
                     placeholder="Message"
@@ -176,7 +174,6 @@ const HomePage = (props) => {
                       height: "40px",
                       borderRadius: "40px",
                       margin: "auto",
-
                       marginRight: "17px",
                     }}
                     onChange={(e) => setMessage(e.target.value)}

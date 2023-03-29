@@ -31,7 +31,7 @@ function RegisterPage() {
   const authenticated = useSelector((state) => state?.auth?.authenticated);
   const errorData = useSelector((state) => state?.auth?.REGerrorData);
   const error = useSelector((state) => state?.auth?.error);
-  console.log();
+  // console.log();
 
   const registerUser = (e) => {
     e.preventDefault();

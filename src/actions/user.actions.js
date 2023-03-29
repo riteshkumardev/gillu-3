@@ -56,9 +56,16 @@ export const updateMessage = (msgObj) => {
 };
 
 export const setChatUser = (user) => {
+  console.log(user, "useruser");
   return {
     type: userConstants.SET_USER_NAME,
     payload: user,
+  };
+};
+export const setChatStarted = (data) => {
+  return {
+    type: userConstants.SET_CHAT_START,
+    payload: data,
   };
 };
 export const getRealtimeConversations = (user) => {

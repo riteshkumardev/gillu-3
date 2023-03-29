@@ -30,7 +30,9 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Header() {
   const user = useSelector((state) => state?.auth);
-  console.log(user, "user");
+  const chatUser = useSelector((state) => state?.user?.userName);
+  const ChatStatus = useSelector((state) => state.ChatStatus);
+  console.log(chatUser, "user");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const authenticated = useSelector((state) => state?.auth?.authenticated);
@@ -44,6 +46,7 @@ function Header() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  React.useEffect(() => {}, [chatUser]);
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -60,10 +63,14 @@ function Header() {
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography sx={{ margin: "auto", textAlign: "center" }}>
+          <Typography
+            sx={{ margin: "auto", textAlign: "center", display: "flex" }}
+          >
             {authenticated
-              ? `Hi ${user.firstName} ${user.lastName}`
+              ? `Hi ${user.firstName} ${user.lastName} `
               : `Welcome To Gillu Chat  `}
+
+            <div>&nbsp; &#x2194; &nbsp;{chatUser} </div>
           </Typography>
 
           <Typography
