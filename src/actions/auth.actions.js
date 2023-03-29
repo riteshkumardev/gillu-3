@@ -110,7 +110,7 @@ export const signin = (user) => {
             console.log(error, "error");
             dispatch({
               type: `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`,
-              payload: { error },
+              payload: true,
             });
           });
       })
@@ -122,7 +122,7 @@ export const signin = (user) => {
         });
         dispatch({
           type: `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`,
-          payload: { error },
+          payload: true,
         });
       });
   };
@@ -131,6 +131,14 @@ export const setAlertErtor = (user) => {
   return async (dispatch) => {
     dispatch({
       type: `${authConstanst.USER_REGISTER_CATCH}_CATCH_FAILURE`,
+      payload: false,
+    });
+  };
+};
+export const setAlertErtorlogin = (user) => {
+  return async (dispatch) => {
+    dispatch({
+      type: `${authConstanst.USER_LOGIN_CATCH}_CATCH_FAILURE`,
       payload: false,
     });
   };

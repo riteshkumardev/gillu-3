@@ -3,6 +3,7 @@ export const authConstanst = {
   USER_LOGOUT: "USER_LOGOUT",
   USER_CATCH_ERROR: "USER_CATCH_ERROR",
   USER_REGISTER_CATCH: "USER_REGISTER_CATCH",
+  USER_LOGIN_CATCH: "USER_LOGIN_CATCH",
 };
 
 export const userConstants = {

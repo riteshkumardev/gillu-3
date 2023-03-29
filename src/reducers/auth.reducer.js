@@ -7,7 +7,7 @@ const initState = {
   authenticating: false,
   authenticated: false,
   error: null,
-  errorData: "",
+  errorData: false,
   REGerrorData: false,
 };
 
@@ -53,7 +53,7 @@ export default (state = initState, action) => {
     case `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`:
       state = {
         ...state,
-        errorData: action.payload.error,
+        errorData: action.payload,
         authenticating: false,
       };
       break;
@@ -61,6 +61,13 @@ export default (state = initState, action) => {
       state = {
         ...state,
         REGerrorData: action.payload,
+        authenticating: false,
+      };
+      break;
+    case `${authConstanst.USER_LOGIN_CATCH}_CATCH_FAILURE`:
+      state = {
+        ...state,
+        errorData: action.payload,
         authenticating: false,
       };
       break;

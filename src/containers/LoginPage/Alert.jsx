@@ -6,14 +6,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { setAlertErtor } from "../../actions";
-import { useDispatch } from "react-redux";
+import { setAlertErtor, setAlertErtorlogin } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertError({ errorData }) {
+export default function AlertError() {
+  const errorData = useSelector((state) => state?.auth?.errorData);
   const [open, setOpen] = React.useState(errorData);
   const dispatch = useDispatch();
   const handleClickOpen = () => {};
@@ -24,6 +25,7 @@ export default function AlertError({ errorData }) {
   const handleClose = () => {
     setOpen(false);
     dispatch(setAlertErtor());
+    dispatch(setAlertErtorlogin());
   };
 
   return (

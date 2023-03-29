@@ -32,7 +32,7 @@ function LoginPage(props) {
   const authenticating = useSelector((state) => state?.auth?.authenticating);
   const authenticated = useSelector((state) => state?.auth?.authenticated);
   const errorData = useSelector((state) => state?.auth?.errorData);
-
+  console.log(errorData, "errorData");
   function CircularProgressWithLabel(props) {
     return (
       <Box sx={{ position: "relative", display: "inline-flex" }}>
@@ -164,7 +164,7 @@ function LoginPage(props) {
       ) : null}
       {errorData ? (
         <div style={{ marginTop: "50px", textAlign: "center" }}>
-          <AlertError errorData={errorData} />
+          <AlertError />
         </div>
       ) : null}
       {authenticated ? (
