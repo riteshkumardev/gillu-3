@@ -40,14 +40,14 @@ export default function AlertError() {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Gillu Chat service ?"}</DialogTitle>
+        <DialogTitle>{"Something went wrong ?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             Please make sure all fields are filled in correctly & password
             minimum 6 characters <br></br>
-            कृपया सुनिश्चित करें कि सभी फ़ील्ड सही ढंग से भरे गए हैं और पासवर्ड
-            न्यूनतम 6 वर्ण हैं
-            {errorData}
+            And please try again <br></br> कृपया सुनिश्चित करें कि सभी फ़ील्ड
+            सही ढंग से भरे गए हैं और पासवर्ड न्यूनतम 6 वर्ण हैं <br></br>
+            और कृपया पुनः प्रयास करें
           </DialogContentText>
         </DialogContent>
         <DialogActions>

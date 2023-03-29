@@ -34,7 +34,7 @@ function RegisterPage() {
   console.log();
 
   const registerUser = (e) => {
-    e.preventDefault(error, "errorerrorerrorerror");
+    e.preventDefault();
 
     const user = {
       firstName,
@@ -42,6 +42,26 @@ function RegisterPage() {
       email,
       password,
     };
+
+    if (firstName == "") {
+      alert("FirstName is required");
+      return;
+    }
+    if (lastName == "") {
+      alert("LastName is required");
+      return;
+    }
+    if (email == "") {
+      alert("Email is required");
+      return;
+    }
+    if (password == "") {
+      alert("password is required");
+      return;
+    }
+    if (!password == "" || lastName == "" || email == "" || firstName == "") {
+      dispatch(signup(user));
+    }
 
     dispatch(signup(user));
   };
