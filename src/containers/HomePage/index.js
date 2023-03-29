@@ -164,7 +164,7 @@ const HomePage = (props) => {
 
           <Box>
             {chatStarted ? (
-              <Box sx={{ mr: 1, flex: 1, marginTop: "20%" }}>
+              <Box sx={{ mr: 1, flex: 1 }}>
                 <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
                   <OutlinedInput
                     value={message}
@@ -174,7 +174,8 @@ const HomePage = (props) => {
                       height: "40px",
                       borderRadius: "40px",
                       margin: "auto",
-                      position: "fixed",
+                      // marginBottom: "100px",
+                      // position: "fixed",
                       marginRight: "17px",
                     }}
                     onChange={(e) => setMessage(e.target.value)}
