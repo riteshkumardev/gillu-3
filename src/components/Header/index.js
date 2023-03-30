@@ -63,39 +63,45 @@ function Header() {
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
+          <Box
             sx={{
+              flexGrow: 1,
+              display: {
+                md: "flex",
+              },
               margin: "auto",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "space-between",
-              marginLeft: "20px",
+
+              justifyContent: "center", // Add this line to center horizontally
+              alignItems: "center", // Add this line to center vertically
             }}
           >
-            {authenticated
-              ? `Hi ${user.firstName} ${user.lastName} `
-              : `Welcome To Gillu Chat  `}
+            <Grid Container>
+              <Grid
+                item={12}
+                sx={{
+                  width: "100%",
 
-            <div> &#128073;&nbsp; &#x2194; &nbsp;&#128072;{chatUser} </div>
-          </Typography>
+                  display: "flex",
+                  justifyContent: "center", // Add this line to center horizontally
+                }}
+              >
+                <Typography>
+                  {authenticated
+                    ? `Hi ${user.firstName} ${user.lastName} `
+                    : `Welcome To Gillu Chat  `}
+                  {chatUser ? (
+                    <div>
+                      &#128073;&nbsp; &#x2194; &nbsp;&#128072;{chatUser}
+                    </div>
+                  ) : null}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          ></Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}> */}
+
+          {/* </Box> */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
