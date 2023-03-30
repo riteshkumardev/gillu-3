@@ -174,7 +174,7 @@ const HomePage = (props) => {
                       height: "40px",
                       borderRadius: "40px",
                       margin: "auto",
-                      bottom: "7%",
+                      bottom: "3%",
 
                       position: "fixed",
                       marginRight: "17px",

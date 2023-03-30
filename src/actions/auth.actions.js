@@ -70,7 +70,7 @@ export const signup = (user) => {
           payload: true,
         });
 
-        console.log(error, "gssg");
+        console.log(error);
       });
   };
 };
