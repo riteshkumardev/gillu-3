@@ -20,6 +20,7 @@ import {
   InputAdornment,
   OutlinedInput,
 } from "@mui/material";
+import CircularColor from "./LoadingCircularProgress";
 
 const User = (props) => {
   const { user, onClick } = props;
@@ -58,6 +59,9 @@ const HomePage = (props) => {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const chatStatus = useSelector((state) => state.user?.chatStatus);
+  const isLoading = useSelector((state) => state.auth.isLoading);
+
+  console.log(isLoading, "isLoading");
   const [chatUser, setchatUser] = useState("");
   const [message, setMessage] = useState("");
   const [userUid, setUserUid] = useState(null);
@@ -158,6 +162,17 @@ const HomePage = (props) => {
                   </Card>
                 ))
               : null}
+
+            {isLoading ? (
+              <>
+                <div style={{ margin: "35%" }}>
+                  <CircularColor />
+                </div>
+                <p style={{ margin: "5%" }}>
+                  Thanks for using Gillu Chat .....
+                </p>
+              </>
+            ) : null}
           </div>
 
           <Box>

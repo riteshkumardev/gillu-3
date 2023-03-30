@@ -8,6 +8,7 @@ const initState = {
   authenticated: false,
   error: null,
   errorData: false,
+  isLoading: false,
   REGerrorData: false,
 };
 
@@ -38,16 +39,21 @@ export default (state = initState, action) => {
       };
       break;
     case `${authConstanst.USER_LOGOUT}_REQUEST`:
+      state = {
+        ...state,
+        isLoading: true,
+      };
       break;
     case `${authConstanst.USER_LOGOUT}_SUCCESS`:
       state = {
         ...initState,
+        isLoading: false,
       };
       break;
     case `${authConstanst.USER_LOGOUT}_FAILURE`:
       state = {
         ...state,
-        error: action.payload.error,
+        isLoading: false,
       };
       break;
     case `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`:

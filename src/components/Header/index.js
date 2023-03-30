@@ -52,6 +52,7 @@ function Header() {
     setAnchorElUser(null);
   };
   const auth = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   return (
     <AppBar position="static">
