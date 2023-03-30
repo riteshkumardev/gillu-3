@@ -31,7 +31,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function Header() {
   const user = useSelector((state) => state?.auth);
   const chatUser = useSelector((state) => state?.user?.userName);
-  const ChatStatus = useSelector((state) => state.ChatStatus);
+  const chatStatus = useSelector((state) => state.user?.chatStatus);
   console.log(chatUser, "user");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -85,11 +85,15 @@ function Header() {
                   justifyContent: "center", // Add this line to center horizontally
                 }}
               >
-                <Typography>
+                <Typography
+                  sx={{
+                    display: "flex",
+                  }}
+                >
                   {authenticated
                     ? `Hi ${user.firstName} ${user.lastName} `
                     : `Welcome To Gillu Chat  `}
-                  {chatUser ? (
+                  {chatStatus ? (
                     <div>
                       &#128073;&nbsp; &#x2194; &nbsp;&#128072;{chatUser}
                     </div>

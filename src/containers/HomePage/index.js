@@ -10,6 +10,7 @@ import {
   updateMessage,
   getRealtimeConversations,
   setChatUser,
+  setChatStarted,
 } from "../../actions";
 
 import { Box } from "@mui/system";
@@ -56,7 +57,7 @@ const HomePage = (props) => {
   const messageContainerRef = useRef(null);
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-  const [chatStarted, setChatStarted] = useState(false);
+  const chatStatus = useSelector((state) => state.user?.chatStatus);
   const [chatUser, setchatUser] = useState("");
   const [message, setMessage] = useState("");
   const [userUid, setUserUid] = useState(null);
@@ -90,7 +91,7 @@ const HomePage = (props) => {
 
   const initChat = (user) => {
     setchatUser(`${user.firstName} ${user.lastName}`);
-    setChatStarted(true);
+    dispatch(setChatStarted(true));
     dispatch(setChatUser(`${user.firstName} ${user.lastName}`));
 
     setUserUid(user.uid);
@@ -135,7 +136,7 @@ const HomePage = (props) => {
             &#128525; {chatStarted ? chatUser : ""}&#128525;
           </div> */}
           <div className="messageSections" ref={messageContainerRef}>
-            {chatStarted
+            {chatStatus
               ? user.conversations.map((con, i) => (
                   <Card
                     className={`message__card ${
@@ -163,7 +164,7 @@ const HomePage = (props) => {
           </div>
 
           <Box>
-            {chatStarted ? (
+            {chatStatus ? (
               <Box sx={{ mr: 1, flex: 1 }}>
                 <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
                   <OutlinedInput
@@ -174,7 +175,7 @@ const HomePage = (props) => {
                       height: "40px",
                       borderRadius: "40px",
                       margin: "auto",
-                      bottom: "7%",
+                      bottom: "5%",
 
                       position: "fixed",
                       marginRight: "17px",

@@ -3,7 +3,7 @@ import { userConstants } from "../actions/constants";
 const intiState = {
   users: [],
   userName: "",
-  ChatStatus: false,
+  chatStatus: false,
   conversations: [],
 };
 
@@ -35,11 +35,11 @@ export default (state = intiState, action) => {
         userName: action.payload,
       };
       break;
-    case userConstants.SET_CHAT_START:
+    case userConstants.SET_CHAT_START_STATUS:
       console.log(action.payload, "action.payload");
       state = {
         ...state,
-        ChatStatus: action.payload,
+        chatStatus: action.payload,
       };
       break;
   }

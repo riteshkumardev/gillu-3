@@ -62,10 +62,10 @@ export const setChatUser = (user) => {
     payload: user,
   };
 };
-export const setChatStarted = (data) => {
+export const setChatStarted = (payload) => {
   return {
-    type: userConstants.SET_CHAT_START,
-    payload: data,
+    type: userConstants.SET_CHAT_START_STATUS,
+    payload,
   };
 };
 export const getRealtimeConversations = (user) => {
