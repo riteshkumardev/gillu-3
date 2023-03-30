@@ -17,7 +17,7 @@ import TouchAppIcon from "@mui/icons-material/TouchApp";
 import { NavLink, Link } from "react-router-dom";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../actions";
+import { logout, setChatStarted } from "../../actions";
 import { Grid } from "@mui/material";
 
 /**
@@ -150,6 +150,7 @@ function Header() {
                       className="active"
                       onClick={() => {
                         dispatch(logout(auth.uid));
+                        dispatch(setChatStarted(false));
                       }}
                     >
                       Logout

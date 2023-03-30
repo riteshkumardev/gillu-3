@@ -60,16 +60,18 @@
 }
 
 .displayName .displayPic {
-  width: 30px;
-  height: 30px;
+  width: 30%;
+  height: 30%;
   overflow: hidden;
-  border-radius: 25px;
+  border-radius: 50%;
+
 }
 
 .displayName .displayPic img {
-  width: 100%;
-  height: 70%;
+  width: 90%;
+  height: 100%;
   object-fit: cover;
+
 }
 
 .messageStyle {
