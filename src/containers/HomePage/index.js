@@ -131,9 +131,6 @@ const HomePage = (props) => {
         </div>
 
         <div className="chatArea">
-          <div className="chatHeader">
-            &#128525; {chatStarted ? chatUser : ""}&#128525;
-          </div>
           <div className="messageSections" ref={messageContainerRef}>
             {chatStarted
               ? user.conversations.map((con, i) => (
