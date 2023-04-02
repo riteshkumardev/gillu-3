@@ -168,12 +168,8 @@ const HomePage = (props) => {
       <Drawer
         sx={{
           width: drawerWidth,
-          marginTop: "50px",
+          // marginTop: "50px",
           flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
         }}
         variant="persistent"
         anchor="left"

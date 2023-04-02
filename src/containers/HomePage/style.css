@@ -24,7 +24,7 @@
 .chatHeaderDiv {
   display: flex;
 }
-.chatHeader {
+/* .chatHeader {
   position: fixed;
 
   width: 85%;
@@ -35,7 +35,7 @@
   color: #000;
   font-weight: bold;
   font-family: sans-serif;
-}
+} */
 .chatControls {
   display: flex;
   position: fixed;
@@ -91,18 +91,18 @@
 .messageStyle {
   background: skyblue;
   display: inline-block;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
   border-radius: 10px;
   margin: 5px;
   display: inline-block;
 }
 
 .messageSections {
-  height: calc(80% - 90px);
+  /* height: calc(80% - 90px); */
   width: 100%;
   overflow-x: hidden;
   position: relative;
-  top: 40px;
+  /* top: 40px; */
 
   float: right;
   /* width: 83%; */
