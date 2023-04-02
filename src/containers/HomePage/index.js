@@ -189,7 +189,7 @@ const HomePage = (props) => {
           </IconButton>
         </DrawerHeader>
         <List>
-          <div className="listOfUsers">
+          <div className="listOfUsers" onClick={handleDrawerClose}>
             {user.users.length > 0
               ? user.users.map((user) => {
                   const datats = user.uid !== auth.uid;
