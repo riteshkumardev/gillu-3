@@ -258,7 +258,7 @@ const HomePage = (props) => {
                     value={message}
                     placeholder="Message"
                     sx={{
-                      width: "70%",
+                      width: "95%",
                       height: "40px",
                       borderRadius: "40px",
                       margin: "auto",
