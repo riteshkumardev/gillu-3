@@ -157,7 +157,7 @@ const HomePage = (props) => {
                       </Typography>
                       <p
                         style={{
-                          maxWidth: "230px",
+                          maxWidth: "220px",
                           wordWrap: "break-word",
                         }}
                       >
