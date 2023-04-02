@@ -139,7 +139,7 @@ const HomePage = (props) => {
           <div className="messageSections" ref={messageContainerRef}>
             {chatStatus
               ? user.conversations.map((con, i) => (
-                  <Card
+                  <Box
                     className={`message__card ${
                       con.user_uid_1 == auth.uid
                         ? "message__user__card"
@@ -147,7 +147,7 @@ const HomePage = (props) => {
                     }`}
                     variant="outlined"
                   >
-                    <CardContent>
+                    <Box>
                       <Typography
                         color="textSecondary"
                         size="small"
@@ -158,13 +158,14 @@ const HomePage = (props) => {
                       <p
                         style={{
                           maxWidth: "220px",
+                          padding: "5px",
                           wordWrap: "break-word",
                         }}
                       >
                         {con.message}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </Box>
+                  </Box>
                 ))
               : null}
 
