@@ -121,7 +121,7 @@ const User = (props) => {
 
 export default function MiniDrawer() {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state?.products.auth);
   const [chatStarted, setChatStarted] = React.useState(false);
   const [chatUser, setChatUser] = useState("");
   const [message, setMessage] = useState("");
@@ -129,7 +129,7 @@ export default function MiniDrawer() {
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state?.products.user);
   const handleDrawerOpen = () => {
     setOpen(true);
   };

@@ -29,13 +29,15 @@ const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Header() {
-  const user = useSelector((state) => state?.auth);
-  const chatUser = useSelector((state) => state?.user?.userName);
-  const chatStatus = useSelector((state) => state.user?.chatStatus);
+  const user = useSelector((state) => state?.products?.auth);
+  const chatUser = useSelector((state) => state?.products?.user?.userName);
+  const chatStatus = useSelector((state) => state?.products.user?.chatStatus);
   console.log(chatUser, "user");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const authenticated = useSelector((state) => state?.auth?.authenticated);
+  const authenticated = useSelector(
+    (state) => state?.products?.auth?.authenticated
+  );
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -51,7 +53,7 @@ function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state?.products.auth);
 
   const dispatch = useDispatch();
   return (

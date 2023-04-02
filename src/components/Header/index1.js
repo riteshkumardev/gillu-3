@@ -11,7 +11,7 @@ import { Paper } from "@mui/material";
  **/
 
 const Header = (props) => {
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state?.products.auth);
   const dispatch = useDispatch();
 
   // const logout = () => {

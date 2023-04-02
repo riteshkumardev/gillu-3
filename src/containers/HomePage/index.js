@@ -56,10 +56,10 @@ const User = (props) => {
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const messageContainerRef = useRef(null);
-  const auth = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.user);
-  const chatStatus = useSelector((state) => state.user?.chatStatus);
-  const isLoading = useSelector((state) => state.auth.isLoading);
+  const auth = useSelector((state) => state?.products.auth);
+  const user = useSelector((state) => state?.products.user);
+  const chatStatus = useSelector((state) => state?.products.user?.chatStatus);
+  const isLoading = useSelector((state) => state?.products.auth.isLoading);
 
   console.log(isLoading, "isLoading");
   const [chatUser, setchatUser] = useState("");
@@ -155,9 +155,14 @@ const HomePage = (props) => {
                       >
                         {!con && `${con.username || "Anonymous"}`}
                       </Typography>
-                      <Typography sx={{ paddingBottom: "15px" }}>
+                      <p
+                        style={{
+                          maxWidth: "230px",
+                          wordWrap: "break-word",
+                        }}
+                      >
                         {con.message}
-                      </Typography>
+                      </p>
                     </CardContent>
                   </Card>
                 ))

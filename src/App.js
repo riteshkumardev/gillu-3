@@ -12,7 +12,7 @@ import PrivateRoutes from "./components/PrivateRoute";
 // import TemporaryDrawer from "./components/Header/index1";
 
 function App() {
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state?.products.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -28,10 +28,14 @@ function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const authenticating = useSelector((state) => state?.auth?.authenticating);
-  const authenticated = useSelector((state) => state?.auth?.authenticated);
-  const errorData = useSelector((state) => state?.auth?.errorData);
+  const auth = useSelector((state) => state?.products.auth);
+  const authenticating = useSelector(
+    (state) => state?.products?.auth?.authenticating
+  );
+  const authenticated = useSelector(
+    (state) => state?.products?.auth?.authenticated
+  );
+  const errorData = useSelector((state) => state?.products?.auth?.errorData);
   // console.log(errorData, "errorData");
   function CircularProgressWithLabel(props) {
     return (
