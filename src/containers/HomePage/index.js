@@ -3,7 +3,7 @@ import "./style.css";
 import Layout from "../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import { Card, CardContent, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography, styled } from "@material-ui/core";
 import "./Message.css";
 import {
   getRealtimeUsers,
@@ -11,16 +11,41 @@ import {
   getRealtimeConversations,
   setChatUser,
   setChatStarted,
+  setOpen,
 } from "../../actions";
 
 import { Box } from "@mui/system";
 import {
+  Drawer,
   FormControl,
   IconButton,
   InputAdornment,
+  List,
   OutlinedInput,
+  useTheme,
 } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import CircularColor from "./LoadingCircularProgress";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  })
+);
 
 const User = (props) => {
   const { user, onClick } = props;
@@ -52,12 +77,15 @@ const User = (props) => {
     </div>
   );
 };
-
+const drawerWidth = 150;
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const messageContainerRef = useRef(null);
   const auth = useSelector((state) => state?.products.auth);
   const user = useSelector((state) => state?.products.user);
+  const open = useSelector((state) => state?.products?.user?.open);
+
+  console.log(open, "open");
   const chatStatus = useSelector((state) => state?.products.user?.chatStatus);
   const isLoading = useSelector((state) => state?.products.auth.isLoading);
 
@@ -120,21 +148,62 @@ const HomePage = (props) => {
 
     //console.log(msgObj);
   };
+  const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end",
+  }));
+
+  const theme = useTheme();
+  // const [open, setOpen] = useState(true);
+  const handleDrawerClose = () => {
+    dispatch(setOpen(false));
+  };
 
   return (
     <Layout>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          marginTop: "50px",
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </DrawerHeader>
+        <List>
+          <div className="listOfUsers">
+            {user.users.length > 0
+              ? user.users.map((user) => {
+                  const datats = user.uid !== auth.uid;
+                  if (datats) {
+                    return (
+                      <User onClick={initChat} key={user.uid} user={user} />
+                    );
+                  }
+                })
+              : null}
+          </div>
+        </List>
+      </Drawer>
       <section className="container">
-        <div className="listOfUsers">
-          {user.users.length > 0
-            ? user.users.map((user) => {
-                const datats = user.uid !== auth.uid;
-                if (datats) {
-                  return <User onClick={initChat} key={user.uid} user={user} />;
-                }
-              })
-            : null}
-        </div>
-
         <div className="chatArea">
           <div className="messageSections" ref={messageContainerRef}>
             {chatStatus
@@ -157,7 +226,7 @@ const HomePage = (props) => {
                       </Typography>
                       <p
                         style={{
-                          maxWidth: "230px",
+                          maxWidth: "335px",
                           padding: "5px",
                           wordWrap: "break-word",
                         }}

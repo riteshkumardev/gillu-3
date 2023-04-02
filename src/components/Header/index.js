@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,11 +13,11 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import TouchAppIcon from "@mui/icons-material/TouchApp";
-
+import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, Link } from "react-router-dom";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, setChatStarted } from "../../actions";
+import { logout, setChatStarted, setOpen } from "../../actions";
 import { Grid } from "@mui/material";
 
 /**
@@ -35,6 +35,7 @@ function Header() {
   console.log(chatUser, "user");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const authenticated = useSelector(
     (state) => state?.products?.auth?.authenticated
   );
@@ -56,6 +57,10 @@ function Header() {
   const auth = useSelector((state) => state?.products.auth);
 
   const dispatch = useDispatch();
+
+  const handleDrawerOpen = () => {
+    dispatch(setOpen(true));
+  };
   return (
     <AppBar position="static">
       <Container
@@ -63,9 +68,15 @@ function Header() {
         sx={{ backgroundColor: "#1976D2", color: "white" }}
       >
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <MenuIcon
+            onClick={handleDrawerOpen}
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
 
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <MenuIcon
+            onClick={handleDrawerOpen}
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
           <Box
             sx={{
               flexGrow: 1,

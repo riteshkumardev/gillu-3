@@ -4,6 +4,7 @@ const intiState = {
   users: [],
   userName: "",
   chatStatus: false,
+  open: false,
   conversations: [],
 };
 
@@ -36,10 +37,16 @@ export default (state = intiState, action) => {
       };
       break;
     case userConstants.SET_CHAT_START_STATUS:
-      console.log(action.payload, "action.payload");
       state = {
         ...state,
         chatStatus: action.payload,
+      };
+      break;
+    case userConstants.SET_OPEN:
+      console.log(action.payload, "action.payload");
+      state = {
+        ...state,
+        open: action.payload,
       };
       break;
   }
