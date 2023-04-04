@@ -75,6 +75,58 @@ export const signup = (user) => {
   };
 };
 
+// export const signin = (user) => {
+//   return async (dispatch) => {
+//     dispatch({ type: `${authConstanst.USER_LOGIN}_REQUEST` });
+//     auth()
+//       .signInWithEmailAndPassword(user.email, user.password)
+//       .then((data) => {
+//         const db = firestore();
+//         db.collection("users")
+//           .doc(data.user.uid)
+//           .update({
+//             isOnline: true,
+//           })
+//           .then(() => {
+//             const name = data.user.displayName.split(" ");
+//             const firstName = name[0];
+//             const lastName = name[1];
+
+//             const loggedInUser = {
+//               firstName,
+//               lastName,
+//               uid: data.user.uid,
+//               email: data.user.email,
+//             };
+
+//             localStorage.setItem("user", JSON.stringify(loggedInUser));
+
+//             dispatch({
+//               type: `${authConstanst.USER_LOGIN}_SUCCESS`,
+//               payload: { user: loggedInUser },
+//             });
+//           })
+//           .catch((error) => {
+//             console.log(error, "error");
+//             dispatch({
+//               type: `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`,
+//               payload: true,
+//             });
+//           });
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//         dispatch({
+//           type: `${authConstanst.USER_LOGIN}_FAILURE`,
+//           payload: { error },
+//         });
+//         dispatch({
+//           type: `${authConstanst.USER_CATCH_ERROR}_CATCH_ERROR`,
+//           payload: true,
+//         });
+//       });
+//   };
+// };
 export const signin = (user) => {
   return async (dispatch) => {
     dispatch({ type: `${authConstanst.USER_LOGIN}_REQUEST` });
@@ -86,6 +138,7 @@ export const signin = (user) => {
           .doc(data.user.uid)
           .update({
             isOnline: true,
+            lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
           })
           .then(() => {
             const name = data.user.displayName.split(" ");
@@ -127,6 +180,7 @@ export const signin = (user) => {
       });
   };
 };
+
 export const setAlertErtor = (user) => {
   return async (dispatch) => {
     dispatch({
@@ -174,6 +228,7 @@ export const logout = (uid) => {
       .doc(uid)
       .update({
         isOnline: false,
+        lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
         auth()
@@ -196,3 +251,36 @@ export const logout = (uid) => {
       });
   };
 };
+
+// export const logout = (uid) => {
+//   return async (dispatch) => {
+//     dispatch({ type: `${authConstanst.USER_LOGOUT}_REQUEST` });
+//     //Now lets logout user
+
+//     const db = firestore();
+//     db.collection("users")
+//       .doc(uid)
+//       .update({
+//         isOnline: false,
+//       })
+//       .then(() => {
+//         auth()
+//           .signOut()
+//           .then(() => {
+//             //successfully
+//             localStorage.clear();
+//             dispatch({ type: `${authConstanst.USER_LOGOUT}_SUCCESS` });
+//           })
+//           .catch((error) => {
+//             console.log(error);
+//             dispatch({
+//               type: `${authConstanst.USER_LOGOUT}_FAILURE`,
+//               payload: { error },
+//             });
+//           });
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };

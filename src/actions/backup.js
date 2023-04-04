@@ -101,10 +101,16 @@ export const getRealtimeConversations = (user) => {
         });
         conversations.sort((a, b) => b.createdAt - a.createdAt);
 
-        dispatch({
-          type: userConstants.GET_REALTIME_MESSAGES,
-          payload: { conversations },
-        });
+        if (conversations.length > 1) {
+          dispatch({
+            type: userConstants.GET_REALTIME_MESSAGES,
+            payload: { conversations },
+          });
+        } else
+          dispatch({
+            type: userConstants.GET_REALTIME_MESSAGES_FAILURE,
+            payload: { conversations },
+          });
       });
   };
 };

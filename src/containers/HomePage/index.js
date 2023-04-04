@@ -4,7 +4,7 @@ import Layout from "../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { Typography, styled } from "@material-ui/core";
-import "./Message.css";
+
 import moment from "moment";
 import {
   getRealtimeUsers,
@@ -90,6 +90,8 @@ const HomePage = (props) => {
   const messageContainerRef = useRef(null);
   const auth = useSelector((state) => state?.products.auth);
   const user = useSelector((state) => state?.products.user);
+
+  // console.log(userr, "userr");
   const open = useSelector((state) => state?.products?.user?.open);
 
   console.log(open, "open");
@@ -172,7 +174,11 @@ const HomePage = (props) => {
   };
   const [lastDateDisplayed, setLastDateDisplayed] = React.useState(null);
 
-  console.log(lastDateDisplayed, "lastDateDisplayed");
+  // user.conversations.map((item, i) => {
+  //   setLastDateDisplayed([...lastDateDisplayed, item.createdAt]);
+  // });
+
+  // console.log(lastDateDisplayed, "lastDateDisplayed");
 
   return (
     <Layout>
@@ -264,9 +270,6 @@ const HomePage = (props) => {
                     >
                       {moment(con.createdAt).format(" h:mm A")}
                     </p>
-                    {/* <span>
-                      {moment(con.createdAt).format("MMMM D, YYYY h:mm A")}
-                    </span> */}
                   </>
                 ))
               : null}
