@@ -243,22 +243,27 @@ const HomePage = (props) => {
                         >
                           {con.message}
                         </p>
-                        <p
-                          style={{
-                            maxWidth: "55px",
-
-                            // padding: "10px",
-                            // wordWrap: "break-word",
-                            textAlign:
-                              con.user_uid_1 == auth.uid ? "end" : "start",
-                            color: "black",
-                            backgroundColor: "none",
-                          }}
-                        >
-                          {moment(con.createdAt).format(" h:mm A")}
-                        </p>
                       </Box>
                     </Box>
+                    <p
+                      style={{
+                        width: "100%",
+                        // border: "1px solid red",
+                        marginTop: "-15px",
+                        marginBottom: "-10px",
+                        paddingLeft: "20px",
+                        paddingRight: "20px",
+
+                        // padding: "10px",
+                        // wordWrap: "break-word",
+                        textAlign:
+                          con.user_uid_1 == auth.uid ? "right" : "left",
+                        color: "black",
+                        backgroundColor: "none",
+                      }}
+                    >
+                      {moment(con.createdAt).format(" h:mm A")}
+                    </p>
                     {/* <span>
                       {moment(con.createdAt).format("MMMM D, YYYY h:mm A")}
                     </span> */}
