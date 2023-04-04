@@ -40,14 +40,12 @@ export const updateMessage = (msgObj) => {
       .add({
         ...msgObj,
         isView: false,
-        createdAt: new Date(),
+        createdAt: new Date().toLocaleString(),
       })
       .then((data) => {
         console.log(data);
-        //success
-        // dispatch({
-        //     type: userConstants.GET_REALTIME_MESSAGES,
-        // })
+        // const createdAt = new Date().toLocaleString(); // format the date
+        // console.log(createdAt, "toLocaleString"); // log
       })
       .catch((error) => {
         console.log(error);
@@ -74,12 +72,14 @@ export const setOpen = (payload) => {
     payload,
   };
 };
+
 export const getRealtimeConversations = (user) => {
   return async (dispatch) => {
     const db = firestore();
     db.collection("conversations")
       .where("user_uid_1", "in", [user.uid_1, user.uid_2])
       .orderBy("createdAt", "asc")
+
       .onSnapshot((querySnapshot) => {
         const conversations = [];
 
@@ -90,26 +90,27 @@ export const getRealtimeConversations = (user) => {
             (doc.data().user_uid_1 == user.uid_2 &&
               doc.data().user_uid_2 == user.uid_1)
           ) {
-            conversations.push(doc.data());
+            // add messages to the conversation array only if they belong to the active chat user
+            if (
+              doc.data().user_uid_1 === user.uid_1 ||
+              doc.data().user_uid_2 === user.uid_1
+            ) {
+              conversations.push(doc.data());
+            }
           }
-
-          // if(conversations.length > 0){
-
-          // }else{
-          //     dispatch({
-          //         type: `${userConstants.GET_REALTIME_MESSAGES}_FAILURE`,
-          //         payload: { conversations }
-          //     })
-          // }
         });
+        conversations.sort((a, b) => b.createdAt - a.createdAt);
 
-        dispatch({
-          type: userConstants.GET_REALTIME_MESSAGES,
-          payload: { conversations },
-        });
-
-        console.log(conversations);
+        if (conversations.length > 1) {
+          dispatch({
+            type: userConstants.GET_REALTIME_MESSAGES,
+            payload: { conversations },
+          });
+        } else
+          dispatch({
+            type: userConstants.GET_REALTIME_MESSAGES_FAILURE,
+            payload: { conversations },
+          });
       });
-    //user_uid_1 == 'myid' and user_uid_2 = 'yourId' OR user_uid_1 = 'yourId' and user_uid_2 = 'myId'
   };
 };

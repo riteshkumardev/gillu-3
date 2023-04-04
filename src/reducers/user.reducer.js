@@ -24,7 +24,7 @@ export default (state = intiState, action) => {
         conversations: action.payload.conversations,
       };
       break;
-    case `${userConstants.GET_REALTIME_MESSAGES}_FAILURE`:
+    case `${userConstants.GET_REALTIME_MESSAGES_FAILURE}_FAILURE`:
       state = {
         ...state,
         conversations: [],
