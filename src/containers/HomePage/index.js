@@ -56,7 +56,7 @@ const User = (props) => {
   const date = new Date(
     timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
   );
-  console.log(date, "datedatedatedate");
+
   return (
     <>
       <div onClick={() => onClick(user)} className="displayName">
@@ -96,8 +96,14 @@ const User = (props) => {
           padding: "3px",
         }}
       >
-        Lastseen:-
-        {moment(date).format("MMMM Do YYYY, h:mm:ss a")}
+        {user.isOnline ? (
+          "Online"
+        ) : (
+          <span>
+            {" "}
+            Lastseen:-{moment(date).format("MMMM Do YYYY, h:mm:ss a")}
+          </span>
+        )}
       </p>
     </>
   );
@@ -109,14 +115,11 @@ const HomePage = (props) => {
   const auth = useSelector((state) => state?.products.auth);
   const user = useSelector((state) => state?.products.user);
 
-  // console.log(userr, "userr");
   const open = useSelector((state) => state?.products?.user?.open);
 
-  console.log(open, "open");
   const chatStatus = useSelector((state) => state?.products.user?.chatStatus);
   const isLoading = useSelector((state) => state?.products.auth.isLoading);
 
-  console.log(isLoading, "isLoading");
   const [chatUser, setchatUser] = useState("");
   const [message, setMessage] = useState("");
   const [userUid, setUserUid] = useState(null);

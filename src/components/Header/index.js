@@ -32,7 +32,7 @@ function Header() {
   const user = useSelector((state) => state?.products?.auth);
   const chatUser = useSelector((state) => state?.products?.user?.userName);
   const chatStatus = useSelector((state) => state?.products.user?.chatStatus);
-  console.log(chatUser, "user");
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
