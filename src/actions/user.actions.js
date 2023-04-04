@@ -99,7 +99,6 @@ export const getRealtimeConversations = (user) => {
             }
           }
         });
-        conversations.sort((a, b) => b.createdAt - a.createdAt);
 
         dispatch({
           type: userConstants.GET_REALTIME_MESSAGES,
