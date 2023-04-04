@@ -3,16 +3,7 @@ import "./style.css";
 import Layout from "../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import TelegramIcon from "@mui/icons-material/Telegram";
-<<<<<<< HEAD
-import { Card, CardContent, Typography } from "@material-ui/core";
-import DeleteIcon from "@mui/icons-material/Delete";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-
-=======
 import { Card, CardContent, Typography, styled } from "@material-ui/core";
->>>>>>> e88051dd222b701d6bf85064e701e2667e65774a
 import "./Message.css";
 import {
   getRealtimeUsers,
@@ -274,31 +265,9 @@ const HomePage = (props) => {
                         }}
                       >
                         {con.message}
-<<<<<<< HEAD
-
-                        {user && message.user === user.uid && (
-                          <button
-                            onClick={() => handleDeleteMessage(message.id)}
-                          >
-                            Delete
-                          </button>
-                        )}
-                      </Typography>
-                    </CardContent>
-                    {/* <CardContent>
-                      <Typography>{con.message}</Typography>
-                      {!con.user_uid_1 === auth.uid && (
-                        <IconButton onClick={() => deleteMessage(con.id)}>
-                          <DeleteIcon />
-                        </IconButton>
-                      )}
-                    </CardContent> */}
-                  </Card>
-=======
                       </p>
                     </Box>
                   </Box>
->>>>>>> e88051dd222b701d6bf85064e701e2667e65774a
                 ))
               : null}
 
