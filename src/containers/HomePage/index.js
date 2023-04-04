@@ -3,12 +3,16 @@ import "./style.css";
 import Layout from "../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import TelegramIcon from "@mui/icons-material/Telegram";
+<<<<<<< HEAD
 import { Card, CardContent, Typography } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
+=======
+import { Card, CardContent, Typography, styled } from "@material-ui/core";
+>>>>>>> e88051dd222b701d6bf85064e701e2667e65774a
 import "./Message.css";
 import {
   getRealtimeUsers,
@@ -16,16 +20,41 @@ import {
   getRealtimeConversations,
   setChatUser,
   setChatStarted,
+  setOpen,
 } from "../../actions";
 
 import { Box } from "@mui/system";
 import {
+  Drawer,
   FormControl,
   IconButton,
   InputAdornment,
+  List,
   OutlinedInput,
+  useTheme,
 } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import CircularColor from "./LoadingCircularProgress";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  })
+);
 
 firebase.initializeApp({
   apiKey: "AIzaSyDR11YqSd5SNL-PIvFseODN6qQYz6VFkKY",
@@ -70,14 +99,17 @@ const User = (props) => {
     </div>
   );
 };
-
+const drawerWidth = 150;
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const messageContainerRef = useRef(null);
-  const auth = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.user);
-  const chatStatus = useSelector((state) => state.user?.chatStatus);
-  const isLoading = useSelector((state) => state.auth.isLoading);
+  const auth = useSelector((state) => state?.products.auth);
+  const user = useSelector((state) => state?.products.user);
+  const open = useSelector((state) => state?.products?.user?.open);
+
+  console.log(open, "open");
+  const chatStatus = useSelector((state) => state?.products.user?.chatStatus);
+  const isLoading = useSelector((state) => state?.products.auth.isLoading);
 
   console.log(isLoading, "isLoading");
   const [chatUser, setchatUser] = useState("");
@@ -162,26 +194,63 @@ const HomePage = (props) => {
 
     //console.log(msgObj);
   };
+  const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end",
+  }));
+
+  const theme = useTheme();
+  // const [open, setOpen] = useState(true);
+  const handleDrawerClose = () => {
+    dispatch(setOpen(false));
+  };
 
   return (
     <Layout>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          // marginTop: "50px",
+          flexShrink: 0,
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </DrawerHeader>
+        <List>
+          <div className="listOfUsers" onClick={handleDrawerClose}>
+            {user.users.length > 0
+              ? user.users.map((user) => {
+                  const datats = user.uid !== auth.uid;
+                  if (datats) {
+                    return (
+                      <User onClick={initChat} key={user.uid} user={user} />
+                    );
+                  }
+                })
+              : null}
+          </div>
+        </List>
+      </Drawer>
       <section className="container">
-        <div className="listOfUsers">
-          {user.users.length > 0
-            ? user.users.map((user) => {
-                const datats = user.uid !== auth.uid;
-                if (datats) {
-                  return <User onClick={initChat} key={user.uid} user={user} />;
-                }
-              })
-            : null}
-        </div>
-
         <div className="chatArea">
           <div className="messageSections" ref={messageContainerRef}>
             {chatStatus
               ? user.conversations.map((con, i) => (
-                  <Card
+                  <Box
                     className={`message__card ${
                       con.user_uid_1 == auth.uid
                         ? "message__user__card"
@@ -189,7 +258,7 @@ const HomePage = (props) => {
                     }`}
                     variant="outlined"
                   >
-                    <CardContent>
+                    <Box>
                       <Typography
                         color="textSecondary"
                         size="small"
@@ -197,8 +266,15 @@ const HomePage = (props) => {
                       >
                         {!con && `${con.username || "Anonymous"}`}
                       </Typography>
-                      <Typography sx={{ paddingBottom: "15px" }}>
+                      <p
+                        style={{
+                          maxWidth: "325px",
+                          padding: "10px",
+                          wordWrap: "break-word",
+                        }}
+                      >
                         {con.message}
+<<<<<<< HEAD
 
                         {user && message.user === user.uid && (
                           <button
@@ -218,6 +294,11 @@ const HomePage = (props) => {
                       )}
                     </CardContent> */}
                   </Card>
+=======
+                      </p>
+                    </Box>
+                  </Box>
+>>>>>>> e88051dd222b701d6bf85064e701e2667e65774a
                 ))
               : null}
 
@@ -241,7 +322,7 @@ const HomePage = (props) => {
                     value={message}
                     placeholder="Message"
                     sx={{
-                      width: "70%",
+                      width: "95%",
                       height: "40px",
                       borderRadius: "40px",
                       margin: "auto",

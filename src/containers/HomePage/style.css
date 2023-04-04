@@ -5,23 +5,26 @@
   height: calc(88%);
   border: "1px solid red";
   overflow: hidden;
+  /* border: 1px solid red; */
 }
 .listOfUsers {
-  width: 30%;
+  width: 100%;
   height: 100%;
   overflow-x: hidden;
   border-right: 1px solid #ccc;
+  /* border: 1px solid red; */
 }
 .chatArea {
   width: 100%;
-  height: 92%;
+  height: 94%;
   overflow-x: hidden;
   position: relative;
+  /* border: 1px solid red; */
 }
 .chatHeaderDiv {
   display: flex;
 }
-.chatHeader {
+/* .chatHeader {
   position: fixed;
 
   width: 85%;
@@ -32,11 +35,12 @@
   color: #000;
   font-weight: bold;
   font-family: sans-serif;
-}
+} */
 .chatControls {
   display: flex;
   position: fixed;
   width: 85%;
+
   height: 50px;
   bottom: 0;
 }
@@ -45,6 +49,7 @@
 }
 .chatControls button {
   width: 10%;
+  border: 1px solid rgb(32, 19, 115);
 }
 
 .displayName {
@@ -59,36 +64,45 @@
   background: #ccc;
 }
 
-.displayName .displayPic {
+.displayName {
+  height: 55px;
+  overflow: hidden;
+  /* border-radius: 50%; */
+  margin: 5px;
+}
+/* .displayName .displayPic {
   width: 80%;
   height: 80%;
   overflow: hidden;
   border-radius: 50%;
-
-}
-
+} */
 .displayName .displayPic img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/* .displayName .displayPic img {
   width: 90%;
   height: 100%;
   object-fit: cover;
-
-}
+} */
 
 .messageStyle {
   background: skyblue;
   display: inline-block;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
   border-radius: 10px;
   margin: 5px;
   display: inline-block;
 }
 
 .messageSections {
-   height: calc(80% - 90px); 
+  /* height: calc(80% - 90px); */
   width: 100%;
   overflow-x: hidden;
-  position: relative; 
-  top: 40px;
+  position: relative;
+  /* top: 40px; */
 
   float: right;
   /* width: 83%; */

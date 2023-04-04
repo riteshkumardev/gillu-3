@@ -68,6 +68,12 @@ export const setChatStarted = (payload) => {
     payload,
   };
 };
+export const setOpen = (payload) => {
+  return {
+    type: userConstants.SET_OPEN,
+    payload,
+  };
+};
 export const getRealtimeConversations = (user) => {
   return async (dispatch) => {
     const db = firestore();

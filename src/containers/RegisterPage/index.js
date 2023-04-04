@@ -26,11 +26,15 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const authenticating = useSelector((state) => state?.auth?.authenticating);
-  const authenticated = useSelector((state) => state?.auth?.authenticated);
-  const errorData = useSelector((state) => state?.auth?.REGerrorData);
-  const error = useSelector((state) => state?.auth?.error);
+  const auth = useSelector((state) => state?.products.auth);
+  const authenticating = useSelector(
+    (state) => state?.products?.auth?.authenticating
+  );
+  const authenticated = useSelector(
+    (state) => state?.products?.auth?.authenticated
+  );
+  const errorData = useSelector((state) => state?.products?.auth?.REGerrorData);
+  const error = useSelector((state) => state?.products?.auth?.error);
   // console.log();
 
   const registerUser = (e) => {

@@ -14,7 +14,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function AlertError() {
-  const errorData = useSelector((state) => state?.auth?.errorData);
+  const errorData = useSelector((state) => state?.products?.auth?.errorData);
   const [open, setOpen] = React.useState(errorData);
   const dispatch = useDispatch();
   const handleClickOpen = () => {};
