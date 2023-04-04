@@ -3,7 +3,16 @@ import "./style.css";
 import Layout from "../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import TelegramIcon from "@mui/icons-material/Telegram";
+<<<<<<< HEAD
+import { Card, CardContent, Typography } from "@material-ui/core";
+import DeleteIcon from "@mui/icons-material/Delete";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+=======
 import { Card, CardContent, Typography, styled } from "@material-ui/core";
+>>>>>>> e88051dd222b701d6bf85064e701e2667e65774a
 import "./Message.css";
 import {
   getRealtimeUsers,
@@ -46,6 +55,19 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     }),
   })
 );
+
+firebase.initializeApp({
+  apiKey: "AIzaSyDR11YqSd5SNL-PIvFseODN6qQYz6VFkKY",
+  authDomain: "new-messenger-11851.firebaseapp.com",
+  databaseURL: "https://new-messenger-11851-default-rtdb.firebaseio.com",
+  projectId: "new-messenger-11851",
+  storageBucket: "new-messenger-11851.appspot.com",
+  messagingSenderId: "836003557836",
+  appId: "1:836003557836:web:97c567c0ed11ac77f3ed69",
+  measurementId: "G-NNF99NE147",
+});
+
+const database = firebase.database();
 
 const User = (props) => {
   const { user, onClick } = props;
@@ -91,6 +113,8 @@ const HomePage = (props) => {
 
   console.log(isLoading, "isLoading");
   const [chatUser, setchatUser] = useState("");
+  const [Users, setUser] = useState("");
+  const [messages, setMessages] = useState("");
   const [message, setMessage] = useState("");
   const [userUid, setUserUid] = useState(null);
   let unsubscribe;
@@ -112,6 +136,28 @@ const HomePage = (props) => {
   }, []);
 
   //console.log(user);
+  useEffect(() => {
+    // Listen for changes to the "messages" node in the database and update the state accordingly
+    database.ref("messages").on("value", (snapshot) => {
+      const messages = snapshot.val();
+      if (messages) {
+        setMessages(Object.values(messages));
+      }
+    });
+
+    // Set the current user in the state
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        firebase.auth().signInAnonymously();
+      }
+    });
+  }, []);
+
+  function handleDeleteMessage(messageId) {
+    database.ref(`messages/${messageId}`).remove();
+  }
 
   //componentWillUnmount
   useEffect(() => {
@@ -228,9 +274,31 @@ const HomePage = (props) => {
                         }}
                       >
                         {con.message}
+<<<<<<< HEAD
+
+                        {user && message.user === user.uid && (
+                          <button
+                            onClick={() => handleDeleteMessage(message.id)}
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </Typography>
+                    </CardContent>
+                    {/* <CardContent>
+                      <Typography>{con.message}</Typography>
+                      {!con.user_uid_1 === auth.uid && (
+                        <IconButton onClick={() => deleteMessage(con.id)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      )}
+                    </CardContent> */}
+                  </Card>
+=======
                       </p>
                     </Box>
                   </Box>
+>>>>>>> e88051dd222b701d6bf85064e701e2667e65774a
                 ))
               : null}
 
