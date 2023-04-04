@@ -3,8 +3,9 @@ import "./style.css";
 import Layout from "../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import { Card, CardContent, Typography, styled } from "@material-ui/core";
+import { Typography, styled } from "@material-ui/core";
 import "./Message.css";
+import moment from "moment";
 import {
   getRealtimeUsers,
   updateMessage,
@@ -16,6 +17,7 @@ import {
 
 import { Box } from "@mui/system";
 import {
+  CssBaseline,
   Drawer,
   FormControl,
   IconButton,
@@ -47,19 +49,6 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   })
 );
 
-firebase.initializeApp({
-  apiKey: "AIzaSyDR11YqSd5SNL-PIvFseODN6qQYz6VFkKY",
-  authDomain: "new-messenger-11851.firebaseapp.com",
-  databaseURL: "https://new-messenger-11851-default-rtdb.firebaseio.com",
-  projectId: "new-messenger-11851",
-  storageBucket: "new-messenger-11851.appspot.com",
-  messagingSenderId: "836003557836",
-  appId: "1:836003557836:web:97c567c0ed11ac77f3ed69",
-  measurementId: "G-NNF99NE147",
-});
-
-const database = firebase.database();
-
 const User = (props) => {
   const { user, onClick } = props;
 
@@ -83,6 +72,11 @@ const User = (props) => {
           {user.firstName}
           {/* {user.lastName} */}
         </span>
+        <span style={{ fontWeight: 500 }}>
+          {user.firstName}
+          {/* {user.lastName} */}
+        </span>
+
         <span
           className={user.isOnline ? `isOnline` : `onlineStatus off`}
         ></span>
@@ -104,8 +98,6 @@ const HomePage = (props) => {
 
   console.log(isLoading, "isLoading");
   const [chatUser, setchatUser] = useState("");
-  const [Users, setUser] = useState("");
-  const [messages, setMessages] = useState("");
   const [message, setMessage] = useState("");
   const [userUid, setUserUid] = useState(null);
   let unsubscribe;
@@ -127,28 +119,6 @@ const HomePage = (props) => {
   }, []);
 
   //console.log(user);
-  useEffect(() => {
-    // Listen for changes to the "messages" node in the database and update the state accordingly
-    database.ref("messages").on("value", (snapshot) => {
-      const messages = snapshot.val();
-      if (messages) {
-        setMessages(Object.values(messages));
-      }
-    });
-
-    // Set the current user in the state
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        firebase.auth().signInAnonymously();
-      }
-    });
-  }, []);
-
-  function handleDeleteMessage(messageId) {
-    database.ref(`messages/${messageId}`).remove();
-  }
 
   //componentWillUnmount
   useEffect(() => {
@@ -169,11 +139,12 @@ const HomePage = (props) => {
 
     dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }));
   };
-
+  const timestamp = new Date().getTime();
   const submitMessage = (e) => {
     const msgObj = {
       user_uid_1: auth.uid,
       user_uid_2: userUid,
+      timestamp: timestamp,
       message,
     };
 
@@ -199,9 +170,13 @@ const HomePage = (props) => {
   const handleDrawerClose = () => {
     dispatch(setOpen(false));
   };
+  const [lastDateDisplayed, setLastDateDisplayed] = React.useState(null);
+
+  console.log(lastDateDisplayed, "lastDateDisplayed");
 
   return (
     <Layout>
+      <CssBaseline />
       <Drawer
         sx={{
           width: drawerWidth,
@@ -241,33 +216,53 @@ const HomePage = (props) => {
           <div className="messageSections" ref={messageContainerRef}>
             {chatStatus
               ? user.conversations.map((con, i) => (
-                  <Box
-                    className={`message__card ${
-                      con.user_uid_1 == auth.uid
-                        ? "message__user__card"
-                        : "message__guest__card"
-                    }`}
-                    variant="outlined"
-                  >
-                    <Box>
-                      <Typography
-                        color="textSecondary"
-                        size="small"
-                        gutterBottom
-                      >
-                        {!con && `${con.username || "Anonymous"}`}
-                      </Typography>
-                      <p
-                        style={{
-                          maxWidth: "325px",
-                          padding: "10px",
-                          wordWrap: "break-word",
-                        }}
-                      >
-                        {con.message}
-                      </p>
+                  <>
+                    <Box
+                      className={`message__card ${
+                        con.user_uid_1 == auth.uid
+                          ? "message__user__card"
+                          : "message__guest__card"
+                      }`}
+                      variant="outlined"
+                    >
+                      <Box>
+                        <Typography
+                          color="textSecondary"
+                          size="small"
+                          gutterBottom
+                        >
+                          {!con && `${con.username || "Anonymous"}`}
+                        </Typography>
+                        <p
+                          style={{
+                            maxWidth: "325px",
+                            padding: "10px",
+                            paddingBottom: "0px",
+                            wordWrap: "break-word",
+                          }}
+                        >
+                          {con.message}
+                        </p>
+                        <p
+                          style={{
+                            maxWidth: "55px",
+
+                            // padding: "10px",
+                            // wordWrap: "break-word",
+                            textAlign:
+                              con.user_uid_1 == auth.uid ? "end" : "start",
+                            color: "black",
+                            backgroundColor: "none",
+                          }}
+                        >
+                          {moment(con.createdAt).format(" h:mm A")}
+                        </p>
+                      </Box>
                     </Box>
-                  </Box>
+                    {/* <span>
+                      {moment(con.createdAt).format("MMMM D, YYYY h:mm A")}
+                    </span> */}
+                  </>
                 ))
               : null}
 
