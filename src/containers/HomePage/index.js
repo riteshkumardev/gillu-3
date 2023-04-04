@@ -52,36 +52,54 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 const User = (props) => {
   const { user, onClick } = props;
 
+  const timestamp = user?.lastSeen;
+  const date = new Date(
+    timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+  );
+  console.log(date, "datedatedatedate");
   return (
-    <div onClick={() => onClick(user)} className="displayName">
-      <div className="displayPic">
-        <img
-          src="https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
-          alt=""
-        />
+    <>
+      <div onClick={() => onClick(user)} className="displayName">
+        <div className="displayPic">
+          <img
+            src="https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
+            alt=""
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            justifyContent: "space-between",
+            margin: "0 10px",
+          }}
+        >
+          <span style={{ fontWeight: 500 }}>
+            {user.firstName}
+            {user.lastName}
+          </span>
+
+          <span
+            className={user.isOnline ? `isOnline` : `onlineStatus off`}
+          ></span>
+        </div>
       </div>
-      <div
+      <p
         style={{
-          display: "flex",
-          flex: 1,
-          justifyContent: "space-between",
-          margin: "0 10px",
+          fontSize: "10px",
+          marginTop: "-20px",
+          backgroundColor: user.isOnline ? "green" : "blue",
+          color: "white",
+          borderRadius: "5px",
+          marginLeft: "5px",
+          marginRight: "5px",
+          padding: "3px",
         }}
       >
-        <span style={{ fontWeight: 500 }}>
-          {user.firstName}
-          {/* {user.lastName} */}
-        </span>
-        <span style={{ fontWeight: 500 }}>
-          {user.firstName}
-          {/* {user.lastName} */}
-        </span>
-
-        <span
-          className={user.isOnline ? `isOnline` : `onlineStatus off`}
-        ></span>
-      </div>
-    </div>
+        Lastseen:-
+        {moment(date).format("MMMM Do YYYY, h:mm:ss a")}
+      </p>
+    </>
   );
 };
 const drawerWidth = 150;
