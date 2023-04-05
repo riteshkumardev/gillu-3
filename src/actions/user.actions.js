@@ -73,6 +73,21 @@ export const setOpen = (payload) => {
   };
 };
 
+export const deleteMessage = (uid) => {
+  return async (dispatch) => {
+    const db = firestore();
+    db.collection("conversations")
+      .doc(uid)
+      .delete()
+      .then(() => {
+        console.log("Message deleted successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export const getRealtimeConversations = (user) => {
   return async (dispatch) => {
     const db = firestore();

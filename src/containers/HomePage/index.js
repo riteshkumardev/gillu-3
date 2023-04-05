@@ -13,6 +13,7 @@ import {
   setChatUser,
   setChatStarted,
   setOpen,
+  deleteMessage,
 } from "../../actions";
 
 import { Box } from "@mui/system";
@@ -29,6 +30,7 @@ import {
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import CircularColor from "./LoadingCircularProgress";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -243,10 +245,10 @@ const HomePage = (props) => {
           <div className="messageSections" ref={messageContainerRef}>
             {chatStatus
               ? user.conversations.map((con, i) => (
-                  <>
+                  <React.Fragment key={i}>
                     <Box
                       className={`message__card ${
-                        con.user_uid_1 == auth.uid
+                        con.user_uid_1 == auth.uid // Check if the message was sent by the logged-in user
                           ? "message__user__card"
                           : "message__guest__card"
                       }`}
@@ -271,6 +273,14 @@ const HomePage = (props) => {
                           {con.message}
                         </p>
                       </Box>
+                      {con.user_uid_1 == auth.uid && ( // Show the delete button only if the message was sent by the logged-in user
+                        <IconButton
+                          onClick={() => dispatch(deleteMessage(con.message))} // Dispatch the deleteMessage action with the message's ID
+                          // style={{ position: "absolute", top: 5, right: 5 }}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      )}
                     </Box>
                     <p
                       style={{
@@ -291,7 +301,7 @@ const HomePage = (props) => {
                     >
                       {moment(con.createdAt).format(" h:mm A")}
                     </p>
-                  </>
+                  </React.Fragment>
                 ))
               : null}
 
