@@ -40,7 +40,7 @@ export const updateMessage = (msgObj) => {
       .add({
         ...msgObj,
         isView: false,
-        createdAt: new Date().toLocaleString(),
+        createdAt: new Date(),
       })
       .then((data) => {
         console.log(data);
@@ -54,7 +54,6 @@ export const updateMessage = (msgObj) => {
 };
 
 export const setChatUser = (user) => {
-  console.log(user, "useruser");
   return {
     type: userConstants.SET_USER_NAME,
     payload: user,
