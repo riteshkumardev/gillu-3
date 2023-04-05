@@ -49,6 +49,14 @@ export default (state = intiState, action) => {
         open: action.payload,
       };
       break;
+    case userConstants.DELETE_MESSAGE:
+      state = {
+        ...state,
+        conversations: state.conversations.filter(
+          (con) => con.user_uid_1 !== action.payload
+        ),
+      };
+      break;
   }
 
   return state;

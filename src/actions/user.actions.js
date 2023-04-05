@@ -2,6 +2,8 @@ import { userConstants } from "./constants";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import { v4 as uuidv4 } from "uuid";
+uuidv4();
 const firestore = firebase.firestore;
 
 export const getRealtimeUsers = (uid) => {
@@ -41,6 +43,7 @@ export const updateMessage = (msgObj) => {
         ...msgObj,
         isView: false,
         createdAt: new Date(),
+        id: uuidv4(),
         // createdAt: new Date().toLocaleString(),
       })
       .then((data) => {
@@ -73,14 +76,31 @@ export const setOpen = (payload) => {
   };
 };
 
-export const deleteMessage = (uid) => {
+export const deleteMessage = (conversationId, messageId) => {
   return async (dispatch) => {
     const db = firestore();
-    db.collection("conversations")
-      .doc(uid)
-      .delete()
-      .then(() => {
-        console.log("Message deleted successfully");
+    const conversationRef = db.collection("conversations").doc(conversationId);
+
+    conversationRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const messages = doc.data().conversations;
+          const updatedMessages = messages.filter(
+            (message) => message.id !== messageId
+          );
+
+          conversationRef
+            .update({
+              conversations: updatedMessages,
+            })
+            .then(() => {
+              console.log("Message deleted successfully");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
       })
       .catch((error) => {
         console.log(error);

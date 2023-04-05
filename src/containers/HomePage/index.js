@@ -273,14 +273,17 @@ const HomePage = (props) => {
                           {con.message}
                         </p>
                       </Box>
-                      {con.user_uid_1 == auth.uid && ( // Show the delete button only if the message was sent by the logged-in user
+                      {/* {con.user_uid_1 == auth.uid && ( // Show the delete button only if the message was sent by the logged-in user
                         <IconButton
-                          onClick={() => dispatch(deleteMessage(con.message))} // Dispatch the deleteMessage action with the message's ID
-                          // style={{ position: "absolute", top: 5, right: 5 }}
+                          onClick={() =>
+                            dispatch(
+                              deleteMessage(con.user_uid_1, con.user_uid_2)
+                            )
+                          }
                         >
                           <DeleteIcon />
                         </IconButton>
-                      )}
+                      )} */}
                     </Box>
                     <p
                       style={{
