@@ -41,6 +41,7 @@ export const updateMessage = (msgObj) => {
         ...msgObj,
         isView: false,
         createdAt: new Date(),
+        // createdAt: new Date().toLocaleString(),
       })
       .then((data) => {
         console.log(data);
