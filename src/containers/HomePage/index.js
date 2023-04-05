@@ -299,7 +299,12 @@ const HomePage = (props) => {
                         backgroundColor: "none",
                       }}
                     >
-                      {moment(con.createdAt).format(" h:mm A")}
+                      {moment(
+                        new Date(
+                          con.createdAt.seconds * 1000 +
+                            con.createdAt.nanoseconds / 1000000
+                        )
+                      ).format(" h:mm A")}
                     </p>
                   </React.Fragment>
                 ))
