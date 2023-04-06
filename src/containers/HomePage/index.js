@@ -266,7 +266,12 @@ const HomePage = (props) => {
                           style={{
                             maxWidth: "325px",
                             padding: "5px",
+                            borderRadius:
+                              con.user_uid_1 == auth.uid
+                                ? "1.125rem 1.125rem 0 1.125rem"
+                                : "1.125rem 1.125rem 1.125rem 0",
                             // paddingBottom: "0px",
+                            boxShadow: "0 13px 20px rgb(0 0 0 / 0.2)",
                             wordWrap: "break-word",
                           }}
                         >
