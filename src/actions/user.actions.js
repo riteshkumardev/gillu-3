@@ -75,29 +75,6 @@ export const setOpen = (payload) => {
     payload,
   };
 };
-export const deleteMessage = (user) => {
-  return async (dispatch) => {
-    const db = firestore();
-
-    // dispatch({ type: `${authConstanst.DELETE_MESSAGE}_REQUEST` });
-
-    try {
-      // Delete the message based on its document ID (message ID)
-      await db.collection("conversations").doc(user.id).delete();
-      // dispatch({
-      //   type: authConstanst.DELETE_MESSAGE,
-      //   payload: user.id,
-      // });
-      console.log("Message deleted successfully");
-    } catch (error) {
-      // dispatch({
-      //   type: `${authConstanst.DELETE_MESSAGE}_FAILURE`,
-      //   payload: { error },
-      // });
-      console.log(error);
-    }
-  };
-};
 
 export const getRealtimeConversations = (user) => {
   return async (dispatch) => {
