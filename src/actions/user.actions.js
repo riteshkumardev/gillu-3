@@ -1,4 +1,4 @@
-import { userConstants } from "./constants";
+import { authConstanst, userConstants } from "./constants";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
@@ -75,36 +75,27 @@ export const setOpen = (payload) => {
     payload,
   };
 };
-
-export const deleteMessage = (conversationId, messageId) => {
+export const deleteMessage = (user) => {
   return async (dispatch) => {
     const db = firestore();
-    const conversationRef = db.collection("conversations").doc(conversationId);
 
-    conversationRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const messages = doc.data().conversations;
-          const updatedMessages = messages.filter(
-            (message) => message.id !== messageId
-          );
+    // dispatch({ type: `${authConstanst.DELETE_MESSAGE}_REQUEST` });
 
-          conversationRef
-            .update({
-              conversations: updatedMessages,
-            })
-            .then(() => {
-              console.log("Message deleted successfully");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      // Delete the message based on its document ID (message ID)
+      await db.collection("conversations").doc(user.id).delete();
+      // dispatch({
+      //   type: authConstanst.DELETE_MESSAGE,
+      //   payload: user.id,
+      // });
+      console.log("Message deleted successfully");
+    } catch (error) {
+      // dispatch({
+      //   type: `${authConstanst.DELETE_MESSAGE}_FAILURE`,
+      //   payload: { error },
+      // });
+      console.log(error);
+    }
   };
 };
 

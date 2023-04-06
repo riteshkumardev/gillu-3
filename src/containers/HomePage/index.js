@@ -265,25 +265,22 @@ const HomePage = (props) => {
                         <p
                           style={{
                             maxWidth: "325px",
-                            padding: "10px",
-                            paddingBottom: "0px",
+                            padding: "5px",
+                            // paddingBottom: "0px",
                             wordWrap: "break-word",
                           }}
                         >
                           {con.message}
                         </p>
                       </Box>
-                      {/* {con.user_uid_1 == auth.uid && ( // Show the delete button only if the message was sent by the logged-in user
+                      {/* {
+                        // Show the delete button only if the message was sent by the logged-in user
                         <IconButton
-                          onClick={() =>
-                            dispatch(
-                              deleteMessage(con.user_uid_1, con.user_uid_2)
-                            )
-                          }
+                          onClick={() => dispatch(deleteMessage(con))}
                         >
                           <DeleteIcon />
                         </IconButton>
-                      )} */}
+                      } */}
                     </Box>
                     <p
                       style={{

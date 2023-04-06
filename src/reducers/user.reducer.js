@@ -53,7 +53,7 @@ export default (state = intiState, action) => {
       state = {
         ...state,
         conversations: state.conversations.filter(
-          (con) => con.user_uid_1 !== action.payload
+          (con) => con.id !== action.payload
         ),
       };
       break;
